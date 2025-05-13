@@ -12,7 +12,7 @@ import Profile from './pages/Profile';
 
 function Navigation() {
   const { signOut, user } = useAuth();
-  const isUser1 = user?.email === "user1@gmail.com";
+  const isRegularUser = user?.email !== "user1@gmail.com"; // Reversed logic - anyone who is not user1 is a regular user
 
   return (
     <nav className="bg-white shadow-lg">
@@ -25,7 +25,7 @@ function Navigation() {
             </Link>
           </div>
           <div className="flex items-center space-x-4">
-            {isUser1 && (
+            {isRegularUser ? (
               <>
                 <Link
                   to="/orders"
@@ -40,8 +40,7 @@ function Navigation() {
                   Profile
                 </Link>
               </>
-            )}
-            {!isUser1 && (
+            ) : (
               <>
                 <Link
                   to="/add-product"

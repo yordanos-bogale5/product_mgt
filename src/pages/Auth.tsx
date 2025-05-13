@@ -19,7 +19,9 @@ function Auth() {
     try {
       if (isSignUp) {
         await signUp(email, password);
-        alert('Check your email for verification!');
+        // Show verification message but also allow immediate sign in
+        alert('Account created! Check your email for verification. You can now sign in.');
+        setIsSignUp(false); // Switch to sign in mode
       } else {
         await signIn(email, password);
         navigate('/dashboard');
